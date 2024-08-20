@@ -1,0 +1,1212 @@
+<script>
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+    
+    const addTilgang2 = document.getElementById('add-tilgang-2');
+    const addTilgang3 = document.getElementById('add-tilgang-3');
+    const addTilgang2Div = document.getElementById('add-tilgang-2-div');
+    const addTilgang3Div = document.getElementById('add-tilgang-3-div');
+    const tilgang2 = document.getElementById('tilgang-2');
+    const tilgang3 = document.getElementById('tilgang-3');
+    
+    
+  addTilgang2.addEventListener('click', function() {
+  
+        tilgang2.style.display = 'flex';
+        addTilgang2Div.style.display = "none";
+        setTimeout(() => {
+        tilgang2.classList.add('open');
+        }, 10);
+  });
+  
+  addTilgang3.addEventListener('click', function() {
+  
+        tilgang3.style.display = 'flex';
+        addTilgang3Div.style.display = "none";
+        setTimeout(() => {
+        tilgang3.classList.add('open');
+        }, 10);
+  });
+    
+  const radioButtons = document.querySelectorAll('input[name="Kampanjetype"]');
+  const roseInfo = document.getElementById('rose-info');
+  
+  radioButtons.forEach(radio => {
+    radio.addEventListener('change', function() {
+      if (document.getElementById('Forslag').checked) {
+        // Add hidden class to start the transition
+        roseInfo.classList.add('hidden');
+        
+        setTimeout(() => {
+          roseInfo.style.display = 'none';
+        }, 400); // This should match the transition duration in ms
+      } else {
+        // Remove hidden class and reset display
+        roseInfo.style.display = 'flex'; // Reset to default display
+        setTimeout(() => {
+        roseInfo.classList.remove('hidden');
+        }, 10);
+      }
+    });
+  });
+    
+    $(document).ready(function() {
+    // Handle input event on the text fields
+    $('.field-input').on('input', function() {
+        var $divBlock = $(this).next('.div-block-383.kryss');
+        
+        if ($(this).val()) {
+            $divBlock.addClass('visible');
+        } else {
+            $divBlock.removeClass('visible');
+        }
+    });
+    
+    $('.button-66').on('click', function(event) {
+        event.preventDefault(); 
+
+        var $divBlock = $(this).closest('.div-block-383.kryss');
+        var $input = $divBlock.prev('.field-input');
+        
+        $input.val(''); 
+        
+        $input.trigger('input');
+    });
+    
+    $('.button-65').on('click', function(event) {
+        event.preventDefault(); 
+    		var $input = $(this).closest('form').find('.field-input'); 
+        console.log('clicked');
+        $input.trigger('input');
+    });
+});
+    
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const submitButton = document.getElementById('submit-button');
+        const targetField = document.getElementById('target-field');
+        const kundeEndrerInnhold = document.querySelectorAll('input[name="Hvem-endrer-innhold"]');
+        const tilgangerDiv = document.getElementById('tilgangerdiv');
+        const sendKorrekturKunde = document.getElementById('send-korrektur-til-kunde');
+        const kundeEpostDiv = document.getElementById('kunde-e-post-div');
+        const slide1 = document.getElementById('slide-1');
+        const slide2 = document.getElementById('slide-2');
+        const slide3 = document.getElementById('slide-3');
+        const slide4 = document.getElementById('slide-4');
+        
+            const kundenavnField = document.getElementById('kundenavn-field'); 
+        const kundenavnFritekst = document.getElementById('kundenavn-fritekst');
+        const kundenavnSokeliste = document.getElementById('kundenavn-sokeliste');
+        const kundenavnFritekstKnapp = document.getElementById('kundenavn-fritekst-knapp');
+        const kundenavnClear = document.getElementById('kundenavn-clear');
+    
+        
+        const mediehusField = document.getElementById('mediehus-field'); 
+        const mediehusSokeliste = document.getElementById('mediehus-sokeliste');
+        const mediehusKnapper = document.querySelectorAll('[mediehusKnapper]');
+        const mediehusClear = document.getElementById('mediehus-clear')
+        
+        const selgernavnField = document.getElementById('selgernavn-field'); 
+        const selgernavnFritekst = document.getElementById('selgernavn-fritekst');
+        const selgernavnSokeliste = document.getElementById('selgernavn-sokeliste');
+        const selgernavnKnapper = document.querySelectorAll('[selgernavnKnapper]');
+        const selgernavnFritekstKnapp = document.getElementById('selgernavn-fritekst-knapp');
+        const selgernavnClear = document.getElementById('selgernavn-clear');
+        
+        const displayStorrelseField = document.getElementById('display-storrelse-field'); 
+        const displayStorrelseDiv = document.getElementById('display-storrelse-div'); 
+        const displayStorrelseSokeliste = document.getElementById('display-storrelse-sokeliste');
+        const displayStorrelseClear = document.getElementById('display-storrelse-clear');
+        const displayStorrelseKnapper = document.querySelectorAll('[display-storrelse-item-str]');
+        const itemListDisplayStorrelser = document.getElementById('display-storrelser-item-list');
+        const itemsMap = new Map();
+        
+        const papirStorrelseField = document.getElementById('papir-storrelse-field'); 
+        const papirStorrelseDiv = document.getElementById('papir-storrelse-div'); 
+        const papirStorrelseSokeliste = document.getElementById('papir-storrelse-sokeliste');
+        const papirStorrelseKnapp = document.getElementById('papir-storrelse-knapp');
+        const itemListpapirStorrelser = document.getElementById('papir-storrelser-item-list');
+        
+        const multiadStorrelseField = document.getElementById('multiad-storrelse-field'); 
+        const multiadStorrelseDiv = document.getElementById('multiad-storrelse-div'); 
+        const multiadStorrelseSokeliste = document.getElementById('multiad-storrelse-sokeliste');
+        const multiadStorrelseClear = document.getElementById('multiad-storrelse-clear');
+        const multiadStorrelseKnapper = document.querySelectorAll('[multiad-storrelse-item-str]');
+        const itemListMultiadStorrelser = document.getElementById('multiad-storrelser-item-list');
+        const itemsMapMultiad = new Map();
+        
+        const multiadkampanjemalField = document.getElementById('multiadkampanjemal-field'); 
+        const multiadkampanjemalSokeliste = document.getElementById('multiadkampanjemal-sokeliste');
+        const multiadkampanjemalKnapper = document.querySelectorAll('[multiadkampanjemalKnapper]');
+        const multiadkampanjemalClear = document.getElementById('multiadkampanjemal-clear');
+        
+        const brukermarkedStorrelseField = document.getElementById('brukermarked-storrelse-field'); 
+        const brukermarkedStorrelseDiv = document.getElementById('brukermarked-storrelse-div'); 
+        const brukermarkedStorrelseSokeliste = document.getElementById('brukermarked-storrelse-sokeliste');
+        const brukermarkedStorrelseClear = document.getElementById('brukermarked-storrelse-clear');
+        const brukermarkedStorrelseKnapper = document.querySelectorAll('[brukermarked-storrelse-item-str]');
+        const itemListBrukermarkedStorrelser = document.getElementById('brukermarked-storrelser-item-list');
+        const itemsMapBrukermarked = new Map();
+        
+           const kundeEpost = document.getElementById('Kunde-E-post');
+        
+        document.getElementById('materiell-accordion-knapp').addEventListener('click', function() {
+        const content = document.getElementById('materiell-accordion-content');
+        
+        if (content.classList.contains('open')) {
+            content.classList.remove('open');
+        } else {
+            content.classList.add('open');
+        }
+    });
+        
+        document.getElementById('display-oppstart').setAttribute("readonly", "");
+        document.getElementById('multiadkampanje-oppstart').setAttribute("readonly", "");
+        document.getElementById('multiadkampanje-sluttdato').setAttribute("readonly", "");
+        document.getElementById('Brukermarked-oppstart').setAttribute("readonly", "");
+        document.getElementById('Brukermarked-sluttdato').setAttribute("readonly", "");
+    
+          
+          console.log(kundeEndrerInnhold)
+          kundeEndrerInnhold.forEach((radio) => {
+          radio.addEventListener('change', () => {
+                  console.log("event fired");
+                  if(radio.value === 'Kunde eller selger endrer innhold' && radio.checked) {
+                      tilgangerDiv.style.display = 'block';
+                       setTimeout(() => {
+                                      tilgangerDiv.classList.add('show');
+                            }, 10); // Delay to ensure display is set before applying opacity transition
+              } else {
+                      tilgangerDiv.classList.remove('show');
+                       setTimeout(() => {
+                                      tilgangerDiv.style.display = 'none';
+                            }, 400); // Delay to ensure display is set before applying opacity transition
+              }
+          });
+          });
+        
+        sendKorrekturKunde.addEventListener('change', () => {
+                if(sendKorrekturKunde.checked) {
+                    kundeEpostDiv.style.display = 'block';
+                       setTimeout(() => {
+                                      kundeEpostDiv.classList.add('show');
+                            }, 10); 
+            } else {
+                    kundeEpostDiv.classList.remove('show');
+                       setTimeout(() => {
+                                      kundeEpostDiv.style.display = 'none';
+                            }, 400);
+              }
+        });
+        
+            
+        // slide 1 ----
+        
+    const sections = document.querySelectorAll('.formcontentcopy');
+    let scrolledSections = new Set(); 
+    let timeoutId = null;
+    
+    sections[0].classList.add('visible'); 
+    sections.forEach((section, index) => {
+        if (index !== 0) section.style.display = 'none'; // Hide all sections except the first one initially
+    });
+    
+    // Utility function for debouncing
+    function debounce(func, wait) {
+        return function(...args) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+    
+    // For section 1 checkboxes
+    const section1Checkboxes = document.querySelectorAll('.section1checkbox');
+    section1Checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', debounce(() => {
+            if (Array.from(section1Checkboxes).some(checkbox => checkbox.checked)) {
+                showNextSection(1);
+            }
+        }, 600));
+    });
+    
+    // For other sections
+    sections.forEach((section, index) => {
+        if (index > 0 && index < sections.length - 1) {
+            const inputs = section.querySelectorAll('input[isRequired], textarea[isRequired]');
+    
+            inputs.forEach(input => {
+                if (input.type !== 'checkbox' && input.type !== 'radio' && !input.hasAttribute('isSelection')) {
+                    input.addEventListener('input', debounce(() => {
+                        if (areImmediateRequiredFieldsFilled(section)) {
+                            showNextSection(index + 1);
+                        }
+                    }, 600));
+                }
+    
+                if (input.hasAttribute('isSelection')) {
+                    input.addEventListener('blur', debounce(() => {
+                        if (areImmediateRequiredFieldsFilled(section)) {
+                            showNextSection(index + 1);
+                        }
+                    }, 400));
+    
+                    input.addEventListener('focus', () => {
+                        clearTimeout(timeoutId);
+                    });
+                }
+            });
+        }
+    });
+    
+    // Form submission handler
+    submitButton.addEventListener('click', (e) => {
+        removeAllSpeechBubbles(); // Remove previous speech bubbles
+        const firstMissingField = validateForm();
+        if (firstMissingField) {
+            e.preventDefault(); // Prevent form submission
+            firstMissingField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            if (firstMissingField.classList.contains('section1checkbox')) {
+                createSpeechBubble(firstMissingField, 'Velg minst en');
+            } else {
+                createSpeechBubble(firstMissingField, 'Her mangler det noe');
+            }
+        }
+    });
+    
+    // Ensure at least one Section 1 checkbox is checked
+    function isSection1CheckboxChecked() {
+        return Array.from(section1Checkboxes).some(checkbox => checkbox.checked);
+    }
+    
+    // Ensure all required fields in a section are filled
+    function areImmediateRequiredFieldsFilled(section) {
+        const requiredInputs = section.querySelectorAll('input[isRequired], textarea[isRequired]');
+        return Array.from(requiredInputs).every(input => {
+            // Handle fields related to "storrelser" via data-list attribute
+            if (input.hasAttribute('data-list') && isElementVisible(input)) {
+                const listId = input.getAttribute('data-list');
+                const list = document.getElementById(listId);
+                return list && list.children.length >= 1;
+            }
+    
+            // General field validation
+            if (input.offsetParent !== null) {
+                if (input.type === 'checkbox' || input.type === 'radio') {
+                    return input.checked;
+                } else {
+                    return input.value.trim() !== '';
+                }
+            }
+            return true;
+        });
+    }
+    
+    // Validate the form before submission
+    function validateForm() {
+        let firstMissingField = null;
+        let missingCheckbox = false;
+    
+        // Check if at least one Section 1 checkbox is selected
+        if (!isSection1CheckboxChecked()) {
+            firstMissingField = document.getElementById('section-1-checkboxes'); // Focus on the first checkbox
+            missingCheckbox = true;
+        }
+        
+        // Check for "MultiAd" checkbox and "MultiAd-type" radios
+        const multiAdCheckbox = document.querySelector('input[name="MultiAd"]');
+        const multiAdTypeRadios = document.querySelectorAll('input[name="MultiAd-type"]');
+        const isAnyMultiAdTypeSelected = Array.from(multiAdTypeRadios).some(radio => radio.checked);
+    
+        if (multiAdCheckbox && multiAdCheckbox.checked && !isAnyMultiAdTypeSelected) {
+            if (!firstMissingField && !missingCheckbox) firstMissingField = document.getElementById('multiad-radios');
+        }
+    
+        for (let section of sections) {
+            const requiredInputs = section.querySelectorAll('input[isRequired], textarea[isRequired]');
+            for (let input of requiredInputs) {
+                if (input.hasAttribute('data-list') && isElementVisible(input)) {
+                    // Validate based on the list items
+                    const listId = input.getAttribute('data-list');
+                    const list = document.getElementById(listId);
+                    if (list && list.children.length < 1) {
+                        if (!firstMissingField && !missingCheckbox) firstMissingField = input;
+                    }
+                } else if (input.offsetParent !== null) {
+                    // General validation
+                    if ((input.type === 'checkbox' || input.type === 'radio') && !input.checked) {
+                        if (!firstMissingField && !missingCheckbox) firstMissingField = input;
+                    } else if (input.value.trim() === '') {
+                        if (!firstMissingField && !missingCheckbox) firstMissingField = input;
+                    }
+                }
+            }
+        }
+    
+        return firstMissingField;
+    }
+    
+    function isElementVisible(element) {
+        return element.offsetParent !== null; // Check if the element is visible
+    }
+    
+    function showNextSection(index) {
+        if (index < sections.length) {
+            const nextSection = sections[index];
+            nextSection.style.display = 'block';
+            nextSection.offsetHeight; // Trigger reflow
+            nextSection.classList.add('visible');
+    
+            if (!scrolledSections.has(index)) {
+                setTimeout(() => {
+                    nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    scrolledSections.add(index);
+                }, 400);
+            }
+        }
+    }
+    
+    // Create and show a speech bubble above the field
+    function createSpeechBubble(field, message) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('speech-bubble');
+        bubble.textContent = message;
+    
+        document.body.appendChild(bubble);
+    
+        const rect = field.getBoundingClientRect();
+        const bubbleHeight = bubble.offsetHeight;
+        const bubbleWidth = bubble.offsetWidth;
+    
+        bubble.style.left = `${rect.left + window.scrollX + rect.width / 2 - bubbleWidth / 2}px`;
+        bubble.style.top = `${rect.top + window.scrollY - bubbleHeight - 20}px`; // 20px for margin
+    
+        
+        setTimeout(() => {
+            bubble.classList.add('fade-out'); // Start the fade-out transition
+            setTimeout(() => {
+                bubble.remove(); 
+            }, 500);
+        }, 5000);
+    }
+    
+    // Remove all speech bubbles
+    function removeAllSpeechBubbles() {
+        const bubbles = document.querySelectorAll('.speech-bubble');
+        bubbles.forEach(bubble => bubble.remove());
+    }
+    
+        
+        //Slide 2 --------
+          
+      //kundenavn ---
+      
+      kundenavnField.addEventListener('input', function () {
+              kundenavnFritekst.innerHTML = kundenavnField.value.trim();
+          });
+      
+          // Show sokeliste when field is focused
+      kundenavnField.addEventListener('focus', function () {
+        kundenavnSokeliste.style.display = 'block';
+        setTimeout(() => {
+          kundenavnSokeliste.classList.add('show');
+        }, 10);
+      });
+      
+      // Hide sokeliste when field loses focus
+      kundenavnField.addEventListener('blur', function () {
+        kundenavnSokeliste.classList.remove('show');
+        
+       
+        setTimeout(() => {
+          kundenavnSokeliste.style.display = 'none';
+          const tagRemover = document.getElementById('tag-remover');
+        tagRemover.click();
+        }, 400);
+      });
+      
+      window.fsAttributes = window.fsAttributes || [];
+      window.fsAttributes.push([
+        'cmsfilter',
+        (filterInstances) => {
+          console.log('cmsfilter Successfully loaded!');
+          
+      const [filterInstance] = filterInstances;
+          
+      filterInstance.listInstance.on('renderitems', (renderedItems) => {   
+      console.log('updated');
+      const kundenavnKnapper = document.querySelectorAll('[kundenavnKnapper]');
+      
+      kundenavnKnapper.forEach(function(button, index) {
+                button.addEventListener('click', function (e) {
+                  e.preventDefault();
+                  kundenavnField.value = this.getAttribute('kundenavnKnapper');
+                });
+              });
+      });
+      },
+    ]);
+            
+            kundenavnFritekstKnapp.addEventListener('click', function (e) {
+              e.preventDefault();
+              console.log(kundenavnFritekst)
+              kundenavnField.value = kundenavnFritekst.innerHTML;
+            });
+          
+          //mediehus---
+         
+          // Show sokeliste when field is focused
+      mediehusField.addEventListener('focus', function () {
+        mediehusSokeliste.style.display = 'block';
+        setTimeout(() => {
+          mediehusSokeliste.classList.add('show');
+        }, 10); 
+      });
+      
+       //Hide sokeliste when field loses focus
+      mediehusField.addEventListener('blur', function () {
+        mediehusSokeliste.classList.remove('show');
+        mediehusField.value = "";
+        
+        setTimeout(() => {
+          mediehusSokeliste.style.display = 'none';
+          const tagRemover = document.getElementById('tag-remover');
+        tagRemover.click();
+        }, 400); // Match the transition duration
+      });
+        
+         mediehusKnapper.forEach(function(button, index) {
+            button.addEventListener('click', function (e) {
+              e.preventDefault();
+              mediehusField.value = this.getAttribute('mediehusKnapper');
+            });
+          });
+          
+          
+          //Slide 3 ---------
+          
+function setupStorrelseHandler(
+  fieldId, 
+  divId, 
+  sokelisteId, 
+  knappSelector, 
+  itemListId, 
+  map, 
+  type
+) {
+  const field = document.getElementById(fieldId); 
+  const sokeliste = sokelisteId ? document.getElementById(sokelisteId) : null;
+  const knapper = document.querySelectorAll(knappSelector);
+  const itemList = document.getElementById(itemListId);
+  
+  // Use the specific ID for the corresponding divblock409
+  const divblock409Id = {
+    'display-storrelser-item-list': 'display-storrelser-valgte',
+    'papir-storrelser-item-list': 'papir-storrelser-valgte',
+    'multiad-storrelser-item-list': 'multiad-storrelser-valgte',
+    'brukermarked-storrelser-item-list': 'brukermarked-storrelser-valgte'
+  }[itemListId];
+
+  const divblock409 = document.getElementById(divblock409Id);
+
+  function showSokeliste() {
+    if (sokeliste) {
+      sokeliste.style.display = 'block';
+      setTimeout(() => {
+        sokeliste.classList.add('show');
+      }, 10);
+    }
+  }
+
+  function hideSokeliste() {
+    if (sokeliste) {
+      sokeliste.classList.remove('show');
+      setTimeout(() => {
+        sokeliste.style.display = 'none';
+        const tagRemover = document.getElementById('tag-remover');
+        if (tagRemover) tagRemover.click();
+      }, 400);
+    }
+  }
+
+  function updateDivVisibility() {
+    if (divblock409) {
+      if (itemList.children.length > 0) {
+        divblock409.classList.add('show');
+      } else {
+        divblock409.classList.remove('show');
+      }
+    }
+  }
+
+  if (sokeliste) {
+    field.addEventListener('focus', showSokeliste);
+    field.addEventListener('input', showSokeliste);
+
+    if (document.querySelectorAll('.divblock409').length > 0) {
+      document.querySelectorAll('.divblock409').forEach(div => {
+        div.addEventListener('click', function (event) {
+          event.stopPropagation();
+        });
+      });
+    }
+  }
+
+  function addItem(text, buttonIndex, isTyped = false) {
+    const listItem = document.createElement('li');
+    listItem.dataset.buttonIndex = buttonIndex;
+    const itemDiv = document.createElement('div');
+    itemDiv.className = `${type}storrelsevalgtetemplate`;
+
+    const para = document.createElement('p');
+    para.className = `${type}paravalgtestr`;
+    para.textContent = text;
+
+    const checkboxDiv = document.createElement('div');
+    checkboxDiv.className = `${type}xvalgtestr`;
+
+    const label = document.createElement('label');
+    label.className = 'w-checkbox checkbox-field-4';
+
+    const checkboxInputDiv = document.createElement('div');
+    checkboxInputDiv.className = 'w-checkbox-input w-checkbox-input--inputType-custom checkbox-4';
+
+    const checkboxInput = document.createElement('input');
+    checkboxInput.type = 'checkbox';
+    checkboxInput.style.opacity = '0';
+    checkboxInput.style.position = 'absolute';
+    checkboxInput.style.zIndex = '-1';
+
+    label.appendChild(checkboxInputDiv);
+    label.appendChild(checkboxInput);
+
+    checkboxInput.addEventListener('change', function () {
+      if (this.checked) {
+        listItem.remove();
+        if (!isTyped) {
+          const button = knapper[buttonIndex];
+          button.classList.remove('visited');
+          map.delete(button);
+        }
+        updateDivVisibility(); // Update visibility when an item is removed
+      }
+    });
+
+    const img = document.createElement('img');
+    img.src = 'https://uploads-ssl.webflow.com/5eccec09b91cd665f61f03a8/669f9bb8baca59f80fef3845_hvit-x.png'; // Update with the correct image path
+    img.className = 'image-316'; // Update with the correct image class if any
+
+    checkboxDiv.appendChild(label);
+    checkboxDiv.appendChild(img);
+
+    itemDiv.appendChild(checkboxDiv);
+    itemDiv.appendChild(para);
+    listItem.appendChild(itemDiv);
+    itemList.appendChild(listItem);
+
+    if (!isTyped) {
+      map.set(knapper[buttonIndex], listItem);
+    }
+
+    updateDivVisibility(); // Update visibility when an item is added
+  }
+
+  knapper.forEach(function(button, index) {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      field.focus();
+      if (map.has(button)) {
+        const itemList = map.get(button);
+        itemList.remove();
+        button.classList.remove('visited');
+        map.delete(button);
+        updateDivVisibility(); // Update visibility when an item is removed
+      } else {
+        const text = this.getAttribute(`${type}-storrelse-item-kat`) + ": " + this.getAttribute(`${type}-storrelse-item-str`); // Get the text from the attribute
+        addItem(text, index);
+        this.classList.add('visited');
+      }
+    });
+  });
+
+  if (type === 'papir') {
+    field.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (field.value.trim() !== "") {
+          addItem(field.value.trim(), null, true);
+          field.focus();
+          field.value = "";
+        }
+      }
+    });
+
+    field.addEventListener('blur', function(e) {
+        if (field.value.trim() !== "") {
+        	addItem(field.value.trim(), null, true);
+        	field.value = "";
+        }
+    });
+
+    papirStorrelseKnapp.addEventListener('click', function (e) {
+      e.preventDefault();
+      field.focus();
+      if (field.value.trim() !== "") {
+        addItem(field.value.trim(), null, true);
+        field.value = "";
+      }
+    });
+  }
+}
+
+const handlers = [
+  {
+    fieldId: 'display-storrelse-field',
+    divId: 'display-storrelse-div',
+    sokelisteId: 'display-storrelse-sokeliste',
+    knappSelector: '[display-storrelse-item-str]',
+    itemListId: 'display-storrelser-item-list',
+    type: 'display'
+  },
+  {
+    fieldId: 'papir-storrelse-field',
+    divId: 'papir-storrelse-div',
+    sokelisteId: null,
+    knappSelector: '[papir-storrelse-item-str]',
+    itemListId: 'papir-storrelser-item-list',
+    type: 'papir'
+  },
+  {
+    fieldId: 'multiad-storrelse-field',
+    divId: 'multiad-storrelse-div',
+    sokelisteId: 'multiad-storrelse-sokeliste',
+    knappSelector: '[multiad-storrelse-item-str]',
+    itemListId: 'multiad-storrelser-item-list',
+    type: 'multiad'
+  },
+  {
+    fieldId: 'brukermarked-storrelse-field',
+    divId: 'brukermarked-storrelse-div',
+    sokelisteId: 'brukermarked-storrelse-sokeliste',
+    knappSelector: '[brukermarked-storrelse-item-str]',
+    itemListId: 'brukermarked-storrelser-item-list',
+    type: 'brukermarked'
+  }
+];
+
+handlers.forEach(handler => setupStorrelseHandler(
+  handler.fieldId,
+  handler.divId,
+  handler.sokelisteId,
+  handler.knappSelector,
+  handler.itemListId,
+  new Map(),
+  handler.type
+));
+
+function isFieldFocused() {
+  return handlers.some(handler => {
+    const field = document.getElementById(handler.fieldId);
+    return document.activeElement === field;
+  });
+}
+
+document.addEventListener('click', function (event) {
+  handlers.forEach(handler => {
+    if (handler.sokelisteId) {
+      const sokeliste = document.getElementById(handler.sokelisteId);
+      if (sokeliste && sokeliste.style.display === 'block') {
+        const div = document.getElementById(handler.divId);
+        const field = document.getElementById(handler.fieldId);
+        if (!div.contains(event.target) && !field.contains(event.target) && !isFieldFocused()) {
+          sokeliste.classList.remove('show');
+          setTimeout(() => {
+            sokeliste.style.display = 'none';
+            const tagRemover = document.getElementById('tag-remover');
+            if (tagRemover) tagRemover.click();
+          }, 400);
+        }
+      }
+    }
+  });
+});
+
+
+
+          //multiadkampanjemal---
+         
+          // Show sokeliste when field is focused
+      multiadkampanjemalField.addEventListener('focus', function () {
+        multiadkampanjemalSokeliste.style.display = 'block';
+        setTimeout(() => {
+          multiadkampanjemalSokeliste.classList.add('show');
+        }, 10); // Delay to ensure display is set before applying opacity transition
+      });
+      
+       //Hide sokeliste when field loses focus
+      multiadkampanjemalField.addEventListener('blur', function () {
+        multiadkampanjemalSokeliste.classList.remove('show');
+        multiadkampanjemalField.value = "";
+        
+        setTimeout(() => {
+          multiadkampanjemalSokeliste.style.display = 'none';
+          const tagRemover = document.getElementById('tag-remover');
+        tagRemover.click();
+        }, 400); // Match the transition duration
+      });
+        
+         multiadkampanjemalKnapper.forEach(function(button, index) {
+            button.addEventListener('click', function (e) {
+              e.preventDefault();
+              multiadkampanjemalField.value = this.getAttribute('multiadkampanjemalKnapper');
+            });
+          });
+          
+          
+          
+           //Slide 5 --------
+          
+      //selgernavn ---
+      
+      selgernavnField.addEventListener('input', function () {
+              selgernavnFritekst.innerHTML = selgernavnField.value.trim();
+          });
+      
+          // Show sokeliste when field is focused
+      selgernavnField.addEventListener('focus', function () {
+        selgernavnSokeliste.style.display = 'block';
+        setTimeout(() => {
+          selgernavnSokeliste.classList.add('show');
+        }, 10); // Delay to ensure display is set before applying opacity transition
+      });
+      
+      // Hide sokeliste when field loses focus
+      selgernavnField.addEventListener('blur', function () {
+        selgernavnSokeliste.classList.remove('show');
+        
+       
+        setTimeout(() => {
+          selgernavnSokeliste.style.display = 'none';
+          const tagRemover = document.getElementById('tag-remover');
+        tagRemover.click();
+        }, 400); // Match the transition duration
+      });
+    
+        
+         selgernavnKnapper.forEach(function(button, index) {
+            button.addEventListener('click', function (e) {
+              e.preventDefault();
+              selgernavnField.value = this.getAttribute('selgernavnKnapper');
+            });
+          });
+            
+            selgernavnFritekstKnapp.addEventListener('click', function (e) {
+              e.preventDefault();
+              console.log(selgernavnFritekst)
+              selgernavnField.value = selgernavnFritekst.innerHTML;
+            });
+         
+        });
+    
+        
+    </script>
+    
+    <!-- File Uploader -->
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script>
+        FilePond.registerPlugin(FilePondPluginFileValidateSize, FilePondPluginFileValidateType);
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputElement = document.querySelector('input[type="file"]');
+            const allowedFileTypes = ['image/jpeg', 'image/png', 'image/svg+xml', 'image/gif', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain', 'application/pdf', 'video/mp4', 'application/zip', 'application/x-zip-compressed'];
+            const renamedFileTypes = {'image/jpeg':'.jpg', 'image/png':'.png', 'image/svg+xml':'.svg', 'image/gif':'.gif', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':'.docx', 'text/plain':'.txt', 'application/pdf':'.pdf', 'video/mp4':'.mp4', 'application/zip':'.zip', 'application/x-zip-compressed':'.zip (compressed)'};
+            const maxFileSize = 10 * 1024 * 1024; // 10 MB maximum file size
+            const maxFileNumber = 15;
+            const fileUploadWebhook = 'https://hooks.zapier.com/hooks/catch/11227354/22vdll4/'; // The second webhook URL for file uploads
+    
+            const pond = FilePond.create(inputElement, {
+                credits: false,
+                name: 'fileToUpload',
+                storeAsFile: true,
+                allowMultiple: true,
+                maxFiles: maxFileNumber,
+                maxFileSize: '10MB',
+                /*acceptedFileTypes: allowedFileTypes,
+                fileValidateTypeLabelExpectedTypesMap: renamedFileTypes,*/
+                labelIdle: `
+                <div style="width:100%;height:100%">
+                    <img src="https://uploads-ssl.webflow.com/5eccec09b91cd665f61f03a8/6697a4984291e03067410571_upload%20icon.png">
+                    <p>Dra materiellet hit<br><span style="font-size:11px;">(Maks 10MB per fil)</span><br><br><span class="filepond--label-action" tabindex="0">eller velg fil her</span></p>
+                </div>
+                `
+            });
+    
+            const uploadForm = document.getElementById('uploadForm');
+            const progressBar = document.getElementById('progress-bar');
+            const uploadStatus = document.getElementById('upload-status');
+            const formDiv = document.getElementById('form-div');
+            const successDiv = document.getElementById('success-div');
+            const errorDiv = document.getElementById('error-div');
+            const loadingDiv = document.getElementById('loading-div'); // Loading indicator div
+            const alleKundenavn = document.querySelectorAll('[alleKundenavn]');
+            const checkListKundenavn = Array.from(alleKundenavn).map(item => item.getAttribute('alleKundenavn'));
+            const alleSelgernavn = document.querySelectorAll('[alleSelgernavn]');
+            const checkListSelgernavn = Array.from(alleSelgernavn).map(item => item.getAttribute('alleSelgernavn'));
+    
+            // Function to generate a six-digit token
+            function generateToken() {
+                return Math.floor(100000 + Math.random() * 900000).toString(); // Generates a number between 100000 and 999999
+            }
+    
+            // Function to replace line breaks with <br> tags in text area inputs
+            function replaceLineBreaks(text) {
+                return text.replace(/\n/g, '<br>');
+            }
+    
+           // Function to summarize form data
+    function summarizeForm() {
+        const summary = {};
+    
+        // Collect input, textarea, and select values
+        uploadForm.querySelectorAll('input, textarea, select').forEach(element => {
+            const name = element.name;
+            const type = element.type;
+            const value = element.value;
+    
+            if (type === 'checkbox') {
+                if (element.checked) {
+                    summary[name] = value; // Append checked value
+                    summary[`${name}_display`] = "display: block;";
+                    summary[`${name}_display_mso`] = "";
+                } else {
+                    summary[`${name}_display`] = "display:none; visibility: hidden; max-height: 0;";
+                    summary[`${name}_display_mso`] = 'style="mso-hide:all; display:none; visibility: hidden; max-height: 0;"';
+                }
+            } else if (type === 'radio') {
+                const groupName = name;
+                const checkedRadio = uploadForm.querySelector(`input[name="${groupName}"]:checked`);
+    
+                // For checked radios, set the group name to the checked value
+                if (checkedRadio) {
+                    summary[groupName] = checkedRadio.value;
+                }
+    
+                // Append display state individually for each radio button
+                uploadForm.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
+                    summary[`${groupName}_${radio.value}_display`] = radio.checked ? "display: block;" : "display:none; visibility: hidden; max-height: 0;";
+                    summary[`${groupName}_${radio.value}_display_mso`] = radio.checked ? "" : 'style="mso-hide:all; display:none; visibility: hidden; max-height: 0;"';
+    
+                });
+            } else if (type === 'textarea' || type === 'text' || type === 'range' || type === 'email') {
+                if (value.trim() !== '') {
+                    summary[name] = replaceLineBreaks(value); // Replace line breaks with <br> tags
+                }
+            } else {
+                if (value.trim() !== '') {
+                    summary[name] = value;
+                }
+            }
+        });
+    
+        // Find and append the last filled out email address
+        const emailFields = Array.from(uploadForm.querySelectorAll('input[type="email"]'));
+        let lastFilledEmail = '';
+    
+        emailFields.forEach(field => {
+            const emailValue = field.value.trim();
+            if (emailValue) {
+                lastFilledEmail = emailValue;
+            }
+        });
+    
+        if (lastFilledEmail) {
+            summary['SendTo'] = lastFilledEmail;
+        }
+    
+        return summary;
+    }
+    
+    
+            uploadForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                loadingDiv.style.display = "block"; // Show loading GIF
+    
+                const kundenavn = document.getElementById('kundenavn-field');
+                const selgerNavn = document.getElementById('selgernavn-field');
+                const displayStorrelser = document.querySelectorAll('.displayparavalgtestr');
+                const papirStorrelser = document.querySelectorAll('.papirparavalgtestr');
+                const multiadStorrelser = document.querySelectorAll('.multiadparavalgtestr');
+                const brukermarkedStorrelser = document.querySelectorAll('.brukermarkedparavalgtestr');
+    
+                const files = pond.getFiles();
+    
+                // Validate file formats and sizes
+                const invalidFiles = files.filter(fileItem =>
+                    !allowedFileTypes.includes(fileItem.file.type) || fileItem.file.size > maxFileSize
+                );
+    
+                if (invalidFiles.length > 0) {
+                    alert('Noen av filene har ugyldig format eller er for store. Vennligst sjekk filene og prøv igjen.');
+                    loadingDiv.style.display = "none"; // Hide loading GIF on error
+                    return; // Stop form submission
+                }
+    
+                const formData = new FormData();
+                const token = generateToken(); // Generate Materiell ID token
+                
+        
+        const dateFields = document.querySelectorAll('input[data-toggle]');
+        let earliestDate = null;
+    
+        dateFields.forEach(function(field) {
+            const dateValue = field.value.trim();
+    
+            // Only process non-empty fields
+            if (dateValue) {
+                // Parse the date value (assuming the format is "mm/dd/yyyy")
+                const [month, day, year] = dateValue.split('/');
+                const date = new Date(year, month - 1, day);
+    
+                // Ensure the date is valid before comparison
+                if (!isNaN(date)) {
+                    if (!earliestDate || date < earliestDate) {
+                        earliestDate = date;
+                    }
+                }
+            }
+        });
+    
+        if (earliestDate) {
+            // Return the date in "mm/dd/yyyy" format
+            const formattedDate = ('0' + (earliestDate.getMonth() + 1)).slice(-2) + '/' +
+                                  ('0' + earliestDate.getDate()).slice(-2) + '/' +
+                                  earliestDate.getFullYear();
+            console.log(`Earliest date is: ${formattedDate}`);
+            formData.append('Tidligste dato', formattedDate);
+        } else {
+            console.log('No valid date found.');
+            formData.append('Tidligste dato', "");
+    
+        }
+        
+        const rosenummerFields = document.querySelectorAll('input[rosenummer]');
+        let rosenummerString = '';
+    
+        // Process rosenummer fields
+        rosenummerFields.forEach(function(field) {
+            const rosenummerValue = field.value.trim();
+    
+            // Only process non-empty fields
+            if (rosenummerValue) {
+                // Prepend "r" to the value
+                if (rosenummerString) {
+                    rosenummerString += ', ';
+                }
+                rosenummerString += 'r' + rosenummerValue;
+            }
+        });
+    
+        console.log(`Rosenummer string: ${rosenummerString}`);
+        formData.append('Rosenummere', rosenummerString);
+        
+    
+    
+                // Append form data excluding files
+                if (checkListKundenavn.includes(kundenavn.value)) {
+                    formData.append('Kunde navn', '0');
+                } else {
+                    formData.append('Kunde navn', '1');
+                }
+    
+                if (checkListSelgernavn.includes(selgerNavn.value)) {
+                    formData.append('Selger navn', '0');
+                } else {
+                    formData.append('Selger navn', '1');
+                }
+    
+                formData.append('Materiell ID', token); // Append Materiell ID to formData
+    
+    
+                function formatListFields(selector, fieldName) {
+                    const items = Array.from(document.querySelectorAll(selector))
+                        .map(item => `<tr class="table_list_tr"><td class="table_list_td">•</td><td style="color: #7f7f7f;">${item.innerHTML}</td></tr>`)
+                        .join('');
+                    formData.append(fieldName, `${items}`);
+                    const itemsString = Array.from(document.querySelectorAll(selector))
+                        .map(items => `${items.innerHTML}`)
+                        .join(', ');
+                    formData.append(fieldName + "_String", `${itemsString}`);
+                }
+    
+                formatListFields('.displayparavalgtestr', 'Display Størrelser');
+                formatListFields('.papirparavalgtestr', 'Papir Størrelser');
+                formatListFields('.multiadparavalgtestr', 'MultiAd Størrelser');
+                formatListFields('.brukermarkedparavalgtestr', 'Brukermarked Størrelser');
+    
+                // Append summary as JSON string
+                const summary = summarizeForm();
+                formData.append('Form Summary', JSON.stringify(summary, null, 2));
+    
+                // If there are no files, submit form data immediately without delay
+                if (files.length === 0) {
+                    formData.append('Delmateriell display', "display:none; visibility: hidden; max-height: 0;");
+                    formData.append('Delmateriell display MSO', "mso-hide:all; display:none; visibility: hidden; max-height: 0;");
+                    fetch(uploadForm.action, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Form submitted without files.', data);
+                        formDiv.style.display = "none";
+                        successDiv.style.display = "flex";
+                    })
+                    .catch((error) => {
+                        console.error('Error submitting form without files:', error);
+                        errorDiv.style.display = "block";
+                    })
+                    .finally(() => {
+                        loadingDiv.style.display = "none"; // Hide loading GIF
+                    });
+                    return; // No need to proceed further if there are no files
+                }
+    
+                // Delay the form data submission if there are files
+                setTimeout(() => {
+                formData.append('Delmateriell display', "display: block;");
+                formData.append('Delmateriell display MSO', "");
+                    fetch(uploadForm.action, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Form data submitted.', data);
+                        formDiv.style.display = "none";
+                        successDiv.style.display = "flex";
+                    })
+                    .catch((error) => {
+                        console.error('Error submitting form data:', error);
+                        errorDiv.style.display = "block";
+                    })
+                    .finally(() => {
+                        loadingDiv.style.display = "none"; // Hide loading GIF
+                    });
+                }, 5000); // 5-second delay
+    
+                let totalFiles = files.length;
+                let uploadedFiles = 0;
+    
+                if (totalFiles > maxFileNumber) {
+                    alert('For mange filer! Du kan maks ha 15 filer!');
+                    loadingDiv.style.display = "none"; // Hide loading GIF on error
+                    return; // Stop form submission
+                }
+    
+                const updateProgress = (percentage) => {
+                    progressBar.style.width = percentage + '%';
+                    progressBar.textContent = percentage + '%';
+                };
+    
+                const uploadFile = (fileItem, index) => {
+                    const fileData = new FormData();
+    
+                    uploadStatus.style.display = "flex";
+                    
+                    fileData.append('fileToUpload', fileItem.file, fileItem.file.name);
+                    fileData.append('Kunde navn', kundenavn.value.trim()); // Add "Kunde navn" to file upload data
+                    fileData.append('Materiell ID', token); // Add Materiell ID to file upload data
+    
+                    const xhr = new XMLHttpRequest();
+    
+                    xhr.upload.addEventListener('progress', (event) => {
+                        if (event.lengthComputable) {
+                            const percentComplete = (event.loaded / event.total) * 100;
+                            // Calculate overall percentage
+                            const overallProgress = ((uploadedFiles + percentComplete / 100) / totalFiles) * 100;
+                            updateProgress(overallProgress.toFixed(2));
+                        }
+                    });
+    
+                    xhr.addEventListener('load', () => {
+                        if (xhr.status === 200) {
+                            uploadedFiles++;
+                            if (uploadedFiles < totalFiles) {
+                                uploadFile(files[uploadedFiles], uploadedFiles);
+                            } else {
+                                updateProgress(100); // Ensure the progress bar is set to 100% on completion
+                                console.log('All files uploaded successfully.');
+                            }
+                        } else {
+                            console.error(`Error uploading file ${index + 1}:`, xhr.statusText);
+                        }
+                    });
+    
+                    xhr.addEventListener('error', () => {
+                        console.error(`Error uploading file ${index + 1}`);
+                    });
+    
+                    xhr.open('POST', fileUploadWebhook);
+                    xhr.send(fileData);
+                };
+    
+                // Start file upload immediately
+                uploadFile(files[0], 0);
+            });
+        });
+    </script>
+    
+    
+    
+        
+        <!-- date picker -->
+        
+        <script src="https://annonseweb.s3.eu-west-1.amazonaws.com/kunder/pm_grafisk/2024/bestillingskjema/js/07_19b/datepicker.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="datepicker"]').datepicker({
+                format: 'mm/dd/yyyy'
+            });
+            // Available date placeholders:
+            // Year: yyyy
+            // Month: mm
+            // Day: dd
+            if (window.innerWidth < 768) {
+                $('[data-toggle="datepicker"]').attr('readonly', 'readonly')
+            }
+        });
+    
+    </script>
+    
+    
+    
+    <!-- 💙 MEMBERSCRIPT #102 v0.1 💙 RESIZE TEXTAREA VERTICALLY -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const elements = document.querySelectorAll('[data-ms-post="content"], [ms-code-resize-input="height"]');
+    
+        elements.forEach(element => {
+            if (element.tagName.toLowerCase() === 'textarea') {
+                element.addEventListener('input', function() {
+                    autoResize(this);
+                }, false);
+            }
+        });
+    
+        function autoResize(element) {
+            const maxHeight = parseInt(getComputedStyle(element).maxHeight, 10);
+            element.style.height = 'auto';
+            element.style.overflow = 'hidden'; // Prevents scrollbar appearance during height adjustment
+    
+            if (element.scrollHeight > maxHeight) {
+                element.style.height = `${maxHeight}px`;
+                element.style.overflow = 'auto'; // Adds scrollbar when content exceeds max height
+            } else {
+                element.style.height = `${element.scrollHeight}px`;
+            }
+        }
+    });
+    </script>
+    
+        
